@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1056632215172",
+    "project_id": "backdropsbliss-ed4e7",
+    "storage_bucket": "backdropsbliss-ed4e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056632215172:android:7d6ce79c1c6f3332d5d4d1",
+        "android_client_info": {
+          "package_name": "com.desailly.backdropsbliss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056632215172-m0ic6a6t3vr2lq4bj34652bhdchkn0rs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.desailly.backdropsbliss",
+            "certificate_hash": "1ebe1cc2b106da9f40f6f3685e0f1a1c63b4ec1f"
+          }
+        },
+        {
+          "client_id": "1056632215172-6hbnjgnpr7gkh4bvekg158s2ihaj0c9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0NzS7HwQMSjEyy4Qk5S4NiytkFNwl5Kw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056632215172-6hbnjgnpr7gkh4bvekg158s2ihaj0c9v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

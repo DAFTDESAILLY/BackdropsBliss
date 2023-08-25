@@ -41,4 +41,8 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("com.airbnb.android:lottie:4.2.1")
+    implementation ("com.google.android.material:material:1.6.1")
+    implementation("com.google.firebase:firebase-database:20.2.2")//base de datos firebase
+    implementation("com.google.firebase:firebase-auth:22.1.1")//autenticacion
+
 }

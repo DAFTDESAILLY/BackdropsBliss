@@ -42,6 +42,8 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -51,10 +53,6 @@
             app:lottie_fileName="carga_animacion.json"
             app:lottie_loop="true"
             app:lottie_autoPlay="true"/>
-
-
-
-
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

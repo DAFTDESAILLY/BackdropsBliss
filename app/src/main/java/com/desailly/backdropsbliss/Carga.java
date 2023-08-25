@@ -18,7 +18,7 @@ public class Carga extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(Carga.this,MainActivity.class);
+                Intent intent = new Intent(Carga.this, MainActivityAdministrador.class);
                         startActivity(intent);
                         finish();
             }

@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/drawer_layout_A"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="#fff"
     tools:openDrawer="start"
-    tools:context=".MainActivity">
+    tools:context=".MainActivityAdministrador">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toobar"
+            android:id="@+id/toobarA"
             android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -26,19 +26,19 @@
 
 
         <FrameLayout
-            android:id="@+id/fragment_container"
+            android:id="@+id/fragment_containerA"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
+        android:id="@+id/nav_viewA"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/encabezado"
-        app:menu="@menu/menu_cliente"
+        app:menu="@menu/menu_admin"
         android:background="#fff"
         app:itemTextColor="#000"/>
 

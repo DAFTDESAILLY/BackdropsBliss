@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -18,10 +19,16 @@ import com.desailly.backdropsbliss.FragmentosAdministrador.RegistrarAdmin;
 import com.desailly.backdropsbliss.FragmentosCliente.AcerDeCliente;
 import com.desailly.backdropsbliss.FragmentosCliente.InicioCliente;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivityAdministrador extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,10 @@ public class MainActivityAdministrador extends AppCompatActivity implements Navi
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
 
         //fragmento por defecto
         if (savedInstanceState == null){
@@ -72,9 +83,33 @@ public class MainActivityAdministrador extends AppCompatActivity implements Navi
                     new ListaAdmin()).commit();
         }
         if(item.getItemId() == R.id.Salir){
-            Toast.makeText(this, "Cerraste sesion", Toast.LENGTH_SHORT).show();
+           CerrarSesion();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void ComprobandoInicioSesion(){
+        if (user !=null){
+            //si el admin a iniciado secion
+
+            Toast.makeText(this, "Se ha iniciado sesion", Toast.LENGTH_SHORT).show();
+        }else{
+            //si no se ha iniciado es porque el usuario es un cliente
+            startActivity(new Intent(MainActivityAdministrador.this,MainActivity.class));
+            finish();
+        }
+    }
+
+    private void CerrarSesion(){
+        firebaseAuth.signOut();
+        startActivity(new Intent(MainActivityAdministrador.this,MainActivity.class));
+        Toast.makeText(this, "Cerraste sesion exitosamente", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStart() {
+        ComprobandoInicioSesion();
+        super.onStart();
     }
 }

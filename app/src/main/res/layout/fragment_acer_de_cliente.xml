@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="#fff"
     tools:context=".FragmentosCliente.AcerDeCliente">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ACERCA DE"
-        android:textSize="18sp"
-        android:textColor="#000"
-        android:gravity="center"/>
+   <androidx.appcompat.widget.LinearLayoutCompat
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:gravity="center">
 
-</FrameLayout>
+       <Button
+           android:id="@+id/Acceder"
+           android:text="@string/Acceder"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"/>
+
+
+
+
+   </androidx.appcompat.widget.LinearLayoutCompat>
+
+</RelativeLayout>

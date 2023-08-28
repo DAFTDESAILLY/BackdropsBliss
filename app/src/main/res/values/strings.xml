@@ -39,6 +39,15 @@
     <string name="Logintxt">Login de Administradores</string>
     <string name="Ingresar">Ingresar</string>
 
+
+    <string name="Eligeunacategoriatxt">Elige Categoria</string>
+
+    <!--categorias-->
+    <string name="Peliculas">Peliculas</string>
+    <string name="Series">Series</string>
+    <string name="Musica">Musica</string>
+    <string name="Gaming">Gaming</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

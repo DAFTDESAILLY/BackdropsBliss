@@ -1,16 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".FragmentosAdministrador.InicioAdmin">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Inicio"
-        android:gravity="center"
-        android:textSize="25sp"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-</FrameLayout>
+        <TextView
+            android:text="@string/Eligeunacategoriatxt"
+            android:textColor="#000"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <!--fila 1 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:weightSum="2">
+
+            <!--peliculas-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:src="@drawable/pelicula"/>
+
+                <Button
+                    android:id="@+id/Peliculas"
+                    android:text="@string/Peliculas"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#fff"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <!--series-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:src="@drawable/series"/>
+
+
+                <Button
+                    android:id="@+id/Series"
+                    android:text="@string/Series"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#fff"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <!--fila 2 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:weightSum="2">
+
+            <!--musica-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:src="@drawable/musica"/>
+
+                <Button
+                    android:id="@+id/Musica"
+                    android:text="@string/Musica"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#fff"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!--gaming-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:src="@drawable/gaming"/>
+
+                <Button
+                    android:id="@+id/Gaming"
+                    android:text="@string/Gaming"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#fff"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>

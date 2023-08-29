@@ -13,6 +13,21 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".CategoriasAdmin.PeliculasA.AgregarPelicula"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasAdmin.VideojuegosA.VideoJuegosA"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasAdmin.MusicaA.MusicaA"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasAdmin.SeriesA.SeriesA"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasAdmin.PeliculasA.PeliculasA"
+            android:exported="false" />
+        <activity
             android:name=".InicioSesion"
             android:exported="false" />
         <activity

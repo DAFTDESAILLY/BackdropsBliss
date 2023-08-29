@@ -44,5 +44,12 @@ dependencies {
     implementation ("com.google.android.material:material:1.9.0")
     implementation("com.google.firebase:firebase-database:20.2.2")//base de datos firebase
     implementation("com.google.firebase:firebase-auth:22.1.1")//autenticacion
+    implementation ("com.google.firebase:firebase-storage:20.2.1")
+
+
+    implementation("com.squareup.picasso:picasso:2.71828")//gestion imagen
+    implementation("androidx.recyclerview:recyclerview:1.3.1")//recyclerview
+    implementation("androidx.cardview:cardview:1.0.0")//cardview
+
 
 }

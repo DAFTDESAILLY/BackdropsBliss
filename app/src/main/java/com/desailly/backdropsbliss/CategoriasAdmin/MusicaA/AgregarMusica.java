@@ -1,4 +1,4 @@
-package com.desailly.backdropsbliss.CategoriasAdmin.PeliculasA;
+package com.desailly.backdropsbliss.CategoriasAdmin.MusicaA;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +20,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.desailly.backdropsbliss.CategoriasAdmin.PeliculasA.AgregarPelicula;
+import com.desailly.backdropsbliss.CategoriasAdmin.PeliculasA.Pelicula;
+import com.desailly.backdropsbliss.CategoriasAdmin.PeliculasA.PeliculasA;
 import com.desailly.backdropsbliss.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,46 +34,41 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class AgregarPelicula extends AppCompatActivity {
+public class AgregarMusica extends AppCompatActivity {
 
-    EditText NombrePeliculas;
-    TextView VistaPeliculas;
-    ImageView ImagenAgregarPelicula;
-    Button PublicarPelicula;
-
-    String RutaDeAlmacenamiento = "Pelicula_Subida/";
-    String RutaDeBaseDeDatos = "PELICULAS";
+    EditText NombreMusica;
+    TextView VistaMusica;
+    ImageView ImagenAgregarMusica;
+    Button PublicarMusica;
+    String RutaDeAlmacenamiento = "Musica_Subida/";
+    String RutaDeBaseDeDatos = "MUSICA";
     Uri RutaArchivoUri;
-
     StorageReference mStorageReference;
     DatabaseReference DatabaseReference;
-
     ProgressDialog progressDialog;
-
     int CODIGO_DE_SOLICITUD_IMAGEN = 5;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agregar_pelicula);
+        setContentView(R.layout.activity_agregar_musica);
+
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Publicar");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-        VistaPeliculas = findViewById(R.id.VistaPeliculas);
-        NombrePeliculas = findViewById(R.id.NombrePeliculas);
-        ImagenAgregarPelicula = findViewById(R.id.ImagenAgregarPelicula);
-        PublicarPelicula = findViewById(R.id.PublicarPelicula);
+        VistaMusica = findViewById(R.id.VistaMusica);
+        NombreMusica = findViewById(R.id.NombreMusica);
+        ImagenAgregarMusica = findViewById(R.id.ImagenAgregarMusica);
+        PublicarMusica = findViewById(R.id.PublicarMusica);
 
         mStorageReference = FirebaseStorage.getInstance().getReference();
         DatabaseReference = FirebaseDatabase.getInstance().getReference(RutaDeBaseDeDatos);
-        progressDialog = new ProgressDialog(AgregarPelicula.this);
+        progressDialog = new ProgressDialog(AgregarMusica.this);
 
-        ImagenAgregarPelicula.setOnClickListener(new View.OnClickListener() {
+        ImagenAgregarMusica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -80,18 +78,25 @@ public class AgregarPelicula extends AppCompatActivity {
             }
         });
 
-        PublicarPelicula.setOnClickListener(new View.OnClickListener() {
+        PublicarMusica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SubirImagen();
             }
         });
+
+
+
+
+
     }
+
+
 
     private void SubirImagen() {
         if (RutaArchivoUri!=null){
             progressDialog.setTitle("Espere por favor");
-            progressDialog.setMessage("Subiendo Imagen Pelicula");
+            progressDialog.setMessage("Subiendo Imagen Musica");
             progressDialog.show();
             progressDialog.setCancelable(false);
             StorageReference storageReference2 = mStorageReference.child(RutaDeAlmacenamiento+System.currentTimeMillis()+"."+ObtenerExtensionDelArchivo(RutaArchivoUri));
@@ -104,19 +109,19 @@ public class AgregarPelicula extends AppCompatActivity {
 
                             Uri downloadURI = uriTask.getResult();
 
-                            String mNombre = NombrePeliculas.getText().toString();
-                            String mVista = VistaPeliculas.getText().toString();
+                            String mNombre = NombreMusica.getText().toString();
+                            String mVista = VistaMusica.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            Pelicula pelicula = new Pelicula(downloadURI.toString(),mNombre,VISTA);
+                            Musica musica = new Musica(downloadURI.toString(),mNombre,VISTA);
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
-                            DatabaseReference.child(ID_IMAGEN).setValue(pelicula);
+                            DatabaseReference.child(ID_IMAGEN).setValue(musica);
 
                             progressDialog.dismiss();
-                            Toast.makeText(AgregarPelicula.this, "Subido Exitosamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AgregarMusica.this, "Subido Exitosamente", Toast.LENGTH_SHORT).show();
 
-                            startActivity(new Intent(AgregarPelicula.this,PeliculasA.class));
+                            startActivity(new Intent(AgregarMusica.this, MusicaA.class));
                             finish();
 
                         }
@@ -124,7 +129,7 @@ public class AgregarPelicula extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(AgregarPelicula.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AgregarMusica.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -149,22 +154,25 @@ public class AgregarPelicula extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==CODIGO_DE_SOLICITUD_IMAGEN
-        && resultCode == RESULT_OK
-        && data != null
-        && data.getData() !=null){
+                && resultCode == RESULT_OK
+                && data != null
+                && data.getData() !=null){
 
             RutaArchivoUri = data.getData();
-            
+
             try {
 
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),RutaArchivoUri);
-                ImagenAgregarPelicula.setImageBitmap(bitmap);
+                ImagenAgregarMusica.setImageBitmap(bitmap);
             }catch (Exception e){
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
-            
+
         }
     }
+
+
+
 
 
 }

@@ -56,10 +56,31 @@
     <string name="VistaPeliculas">0</string>
     <string name="PublicarPelicula">Publicar</string>
 
+    <!--musica-->
+    <string name="NombreTXTMusica">Nombre de imagen</string>
+    <string name="NombreMusica">Escriba nombre aqui</string>
+    <string name="VistaMusica">0</string>
+    <string name="PublicarMusica">Publicar</string>
 
+
+    <!--item pelicula-->
     <string name="NombreImagenPelicula"> -- </string>
     <string name="VistaPelicula"> -- </string>
 
+    <!--item Musica-->
+    <string name="NombreImagen_Musica"> -- </string>
+    <string name="Vista_Musica"> -- </string>
+
+
+    <!--Series-->
+    <string name="NombreTXTSerie">Nombre de imagen</string>
+    <string name="NombreSerie">Escriba nombre aqui</string>
+    <string name="VistaSerie">0</string>
+    <string name="PublicarSerie">Publicar</string>
+
+    <!--item Seires-->
+    <string name="NombreImagen_Serie"> -- </string>
+    <string name="Vista_Serie"> -- </string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

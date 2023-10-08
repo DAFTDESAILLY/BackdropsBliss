@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    tools:context=".CategoriasAdmin.SeriesA.AgregarSerie">
+    tools:context=".CategoriasAdmin.VideojuegosA.AgregarVideojuegos">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -20,13 +20,13 @@
             android:orientation="vertical">
 
             <TextView
-                android:text="@string/NombreTXTSerie"
+                android:text="@string/NombreTXTVideojuegos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <EditText
-                android:id="@+id/Nombre_Serie"
-                android:hint="@string/NombrePeliculas"
+                android:id="@+id/Nombre_Videojuegos"
+                android:hint="@string/NombreVideojuegos"
                 android:inputType="textCapWords|textAutoCorrect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,8 +46,8 @@
                     android:src="@drawable/vista_ico"/>
 
                 <TextView
-                    android:id="@+id/Vista_Serie"
-                    android:text="@string/VistaPeliculas"
+                    android:id="@+id/Vista_Videojuegos"
+                    android:text="@string/VistaVideojuegos"
                     android:textSize="20sp"
                     android:layout_marginStart="10dp"
                     android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ImagenAgregar_Serie"
+            android:id="@+id/ImagenAgregar_Videojuegos"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/imagen_ico"
@@ -65,9 +65,9 @@
             android:layout_marginTop="10dp"/>
 
         <Button
-            android:id="@+id/Publicar_Serie"
+            android:id="@+id/Publicar_Videojuegos"
             android:layout_marginTop="10dp"
-            android:text="@string/PublicarPelicula"
+            android:text="@string/PublicarVideojuegos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#fff"

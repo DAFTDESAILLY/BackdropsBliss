@@ -6,6 +6,9 @@ public class Pelicula {
     private String nombre;
     private int vistas;
 
+    public Pelicula() {
+    }
+
     //constructor
     public Pelicula(String imagen, String nombre, int vistas) {
         this.imagen = imagen;

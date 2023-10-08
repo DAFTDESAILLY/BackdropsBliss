@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 public class ViewHolderPelicula extends RecyclerView.ViewHolder {
 
 
-    View mView;
+    static View mView;
     private ViewHolderPelicula.ClickListener mClickListener;
 
     public interface ClickListener {
@@ -34,25 +34,20 @@ public class ViewHolderPelicula extends RecyclerView.ViewHolder {
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (mClickListener != null) {
-                    mClickListener.onItemClick(v, getAdapterPosition()); // Corregido el nombre del método
-                }
+            public void onClick(View view) {
+                mClickListener.onItemClick(view,getBindingAdapterPosition());
             }
         });
 
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onLongClick(View v) {
-                if (mClickListener != null) {
-                    mClickListener.onItemLongClick(v, getAdapterPosition()); // Corregido el nombre del método
-                    return true;
-                }
-                return false;
+            public boolean onLongClick(View view) {
+                mClickListener.onItemLongClick(view,getBindingAdapterPosition());
+                return true;
             }
         });
     }
-    public void SeteoPeliculas(Context context, String nombre, int vista, String imagen){
+    public static void SeteoPeliculas(Context context, String nombre, int vista, String imagen){
         ImageView ImagePelicula;
         TextView NombreImagenPelicula;
         TextView VistaPelicula;

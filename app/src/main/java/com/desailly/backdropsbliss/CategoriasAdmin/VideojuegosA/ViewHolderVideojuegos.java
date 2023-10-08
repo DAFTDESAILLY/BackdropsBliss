@@ -1,4 +1,4 @@
-package com.desailly.backdropsbliss.CategoriasAdmin.SeriesA;
+package com.desailly.backdropsbliss.CategoriasAdmin.VideojuegosA;
 
 import android.content.Context;
 import android.view.View;
@@ -13,10 +13,9 @@ import com.desailly.backdropsbliss.CategoriasAdmin.PeliculasA.ViewHolderPelicula
 import com.desailly.backdropsbliss.R;
 import com.squareup.picasso.Picasso;
 
-public class ViewHolderSerie extends RecyclerView.ViewHolder {
-
+public class ViewHolderVideojuegos extends RecyclerView.ViewHolder{
     View mView;
-    private ViewHolderSerie.ClickListener mClickListener;
+    private ViewHolderVideojuegos.ClickListener mClickListener;
 
     public interface ClickListener {
         void onItemClick(View view, int position); // Corregido el nombre del método
@@ -24,11 +23,11 @@ public class ViewHolderSerie extends RecyclerView.ViewHolder {
     }
 
     //metodo para poder presionar o mantener presionado un item
-    public void setOnClickListener(ViewHolderSerie.ClickListener clickListener) {
+    public void setOnClickListener(ViewHolderVideojuegos.ClickListener clickListener) {
         mClickListener = clickListener;
     }
 
-    public ViewHolderSerie(@NonNull View itemView) {
+    public ViewHolderVideojuegos(@NonNull View itemView) {
         super(itemView);
         mView = itemView;
 
@@ -47,26 +46,26 @@ public class ViewHolderSerie extends RecyclerView.ViewHolder {
             }
         });
     }
-    public void SeteoSerie(Context context, String nombre, int vista, String imagen){
-        ImageView Imagen_Serie;
-        TextView NombreImagen_Serie;
-        TextView Vista_Serie;
+    public void SeteoVideoJuegos(Context context, String nombre, int vista, String imagen){
+        ImageView ImagenVideoJuegos;
+        TextView Nombre_VideoJuegos;
+        TextView Vista_VideoJuegos;
 
         //Conexion con el item
 
-        Imagen_Serie = mView.findViewById(R.id.Imagen_Serie);
-        NombreImagen_Serie = mView.findViewById(R.id.NombreImagen_Serie);
-        Vista_Serie = mView.findViewById(R.id.Vista_Serie);
+        ImagenVideoJuegos = mView.findViewById(R.id.ImagenVideoJuegos);
+        Nombre_VideoJuegos = mView.findViewById(R.id.Nombre_VideoJuegos);
+        Vista_VideoJuegos = mView.findViewById(R.id.Vista_VideoJuegos);
 
-        NombreImagen_Serie.setText(nombre);
+        Nombre_VideoJuegos.setText(nombre);
 
         //convertir a string vista
         String VistaString = String.valueOf(vista);
-        Vista_Serie.setText(VistaString);
+        Vista_VideoJuegos.setText(VistaString);
 
         try {
 
-            Picasso.get().load(imagen).into(Imagen_Serie);
+            Picasso.get().load(imagen).into(ImagenVideoJuegos);
         }catch (Exception e){
             Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
         }

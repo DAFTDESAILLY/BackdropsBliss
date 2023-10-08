@@ -82,6 +82,14 @@
     <string name="NombreImagen_Serie"> -- </string>
     <string name="Vista_Serie"> -- </string>
 
+    <!--videojuegos-->
+    <string name="NombreTXTVideojuegos">Nombre de imagen</string>
+    <string name="NombreVideojuegos">Escriba nombre aqui</string>
+    <string name="VistaVideojuegos">0</string>
+    <string name="PublicarVideojuegos">Publicar</string>
+
+    <string name="Nombre_VideoJuegos"> -- </string>
+    <string name="Vista_VideoJuegos"> -- </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

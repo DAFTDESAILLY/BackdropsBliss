@@ -1,15 +1,14 @@
-package com.desailly.backdropsbliss.CategoriasAdmin.MusicaA;
+package com.desailly.backdropsbliss.CategoriasAdmin.VideojuegosA;
 
-public class Musica {
-
+public class VideoJuego {
     private String imagen;
     private String nombre;
     private int vistas;
 
-    public Musica() {
+    public VideoJuego() {
     }
 
-    public Musica(String imagen, String nombre, int vistas) {
+    public VideoJuego(String imagen, String nombre, int vistas) {
         this.imagen = imagen;
         this.nombre = nombre;
         this.vistas = vistas;

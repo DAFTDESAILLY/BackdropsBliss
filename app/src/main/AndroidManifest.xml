@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.CAMERA"
+        tools:ignore="PermissionImpliesUnsupportedChromeOsHardware" /> <!--permiso camara-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> <!--permiso almacenanmiento externo-->
+    <uses-permission android:name="android.permission.SET_WALLPAPER"/> <!--permiso fondo de pantalla-->
+    <uses-permission android:name="android.permission.INTERNET"/> <!--permiso para internet-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!--permiso leer almacenamiento externo-->
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"

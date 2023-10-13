@@ -2,11 +2,16 @@ package com.desailly.backdropsbliss.CategoriasAdmin.MusicaA;
 
 import static com.google.firebase.storage.FirebaseStorage.getInstance;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -58,7 +63,7 @@ public class AgregarMusica extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     String rNombre,rImagen,rVista;
-    int CODIGO_DE_SOLICITUD_IMAGEN = 5;
+   // int CODIGO_DE_SOLICITUD_IMAGEN = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,10 +109,18 @@ public class AgregarMusica extends AppCompatActivity {
         ImagenAgregarMusica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //SDK 30
+                /*
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent,"Seleccionar imagen"),CODIGO_DE_SOLICITUD_IMAGEN);
+                startActivityForResult(Intent.createChooser(intent,"Seleccionar imagen"),CODIGO_DE_SOLICITUD_IMAGEN);*/
+                //SDK  31
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                ObtenerImagenGaleria.launch(intent);
+
+
             }
         });
 
@@ -206,7 +219,13 @@ public class AgregarMusica extends AppCompatActivity {
 
 
     private void SubirImagen() {
-        if (RutaArchivoUri!=null){
+
+        String mNombre = NombreMusica.getText().toString();
+        //validar que el nombre  y la imagen no sean nulas
+        if (mNombre.equals("")||RutaArchivoUri==null){
+            Toast.makeText(this, "Asigne un nombre o una imagen", Toast.LENGTH_SHORT).show();
+        }
+        else {
             progressDialog.setTitle("Espere por favor");
             progressDialog.setMessage("Subiendo Imagen Musica");
             progressDialog.show();
@@ -221,7 +240,7 @@ public class AgregarMusica extends AppCompatActivity {
 
                             Uri downloadURI = uriTask.getResult();
 
-                            String mNombre = NombreMusica.getText().toString();
+
                             String mVista = VistaMusica.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
@@ -251,9 +270,6 @@ public class AgregarMusica extends AppCompatActivity {
                         }
                     });
         }
-        else {
-            Toast.makeText(this, "DEBE ASIGNAR UNA IMAGEN", Toast.LENGTH_SHORT).show();
-        }
     }
 
     private String ObtenerExtensionDelArchivo(Uri uri){
@@ -262,7 +278,9 @@ public class AgregarMusica extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
-    @Override
+    //SDK30
+    //comprueba si la imagen seleccionada por el admin fue correcta
+  /*  @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==CODIGO_DE_SOLICITUD_IMAGEN
@@ -281,9 +299,28 @@ public class AgregarMusica extends AppCompatActivity {
             }
 
         }
-    }
+    }*/
 
-
+    //SDK 31
+    //obtener imagen galeria
+    private ActivityResultLauncher<Intent> ObtenerImagenGaleria = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                  //manejar el resultado de nuestro intent
+                  if (result.getResultCode() == Activity.RESULT_OK){
+                      //seleccion de imagen
+                      Intent data = result.getData();
+                      //Obtener uri de la imagen
+                      RutaArchivoUri = data.getData();
+                      ImagenAgregarMusica.setImageURI(RutaArchivoUri);
+                  }else {
+                      Toast.makeText(AgregarMusica.this, "Cancelado", Toast.LENGTH_SHORT).show();
+                  }
+                }
+            }
+    );
 
 
 

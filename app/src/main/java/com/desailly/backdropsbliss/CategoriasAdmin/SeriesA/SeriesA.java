@@ -9,8 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +20,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.desailly.backdropsbliss.CategoriasAdmin.MusicaA.MusicaA;
@@ -47,6 +51,9 @@ public class SeriesA extends AppCompatActivity {
     FirebaseRecyclerAdapter<Serie, ViewHolderSerie> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<Serie> options;
 
+    SharedPreferences sharedPreferences;
+    Dialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +70,7 @@ public class SeriesA extends AppCompatActivity {
         mFirebaseDataBase =  FirebaseDatabase.getInstance();
         mRef = mFirebaseDataBase.getReference("SERIE");
 
+        dialog = new Dialog(SeriesA.this);
         ListarImagenesSerie();
 
     }
@@ -125,9 +133,21 @@ public class SeriesA extends AppCompatActivity {
             }
         };
 
-        recyclerViewSerie.setLayoutManager(new GridLayoutManager(SeriesA.this,2));
-        firebaseRecyclerAdapter.startListening();
-        recyclerViewSerie.setAdapter(firebaseRecyclerAdapter);
+        sharedPreferences = SeriesA.this.getSharedPreferences("SERIE",MODE_PRIVATE);
+        String ordenar_en = sharedPreferences.getString("Ordenar","Dos");
+
+        //eligir el tipo de vista
+        if (ordenar_en.equals("Dos")){
+
+            recyclerViewSerie.setLayoutManager(new GridLayoutManager(SeriesA.this,2));
+            firebaseRecyclerAdapter.startListening();
+            recyclerViewSerie.setAdapter(firebaseRecyclerAdapter);
+        }
+        else if (ordenar_en.equals("Tres")) {
+            recyclerViewSerie.setLayoutManager(new GridLayoutManager(SeriesA.this,3));
+            firebaseRecyclerAdapter.startListening();
+            recyclerViewSerie.setAdapter(firebaseRecyclerAdapter);
+        }
     }
 
 
@@ -203,12 +223,47 @@ public class SeriesA extends AppCompatActivity {
             // Toast.makeText(this, "Agregar imagen", Toast.LENGTH_SHORT).show();
         }
         if(item.getItemId() == R.id.Vista){
-            Toast.makeText(this, "Listar imagenes", Toast.LENGTH_SHORT).show();
+          Ordenar_Imagenes();
         }
         return super.onOptionsItemSelected(item);
     }
 
+    private void Ordenar_Imagenes(){
 
+        //declarar vista
+        TextView OrdenarTXT;
+        Button Dos_Columnas,Tres_Columnas;
+        //coneccion cuadro de dialog
+        dialog.setContentView(R.layout.dialog_ordenar);
+
+        //vistas
+        OrdenarTXT = dialog.findViewById(R.id.OrdenarTXT);
+        Dos_Columnas = dialog.findViewById(R.id.Dos_Columnas);
+        Tres_Columnas = dialog.findViewById(R.id.Tres_Columnas);
+
+        //eventio 2 columnas
+        Dos_Columnas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Ordenar", "Dos");
+                editor.apply();
+                recreate();
+                dialog.dismiss();
+            }
+        });
+        Tres_Columnas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Ordenar", "Tres");
+                editor.apply();
+                recreate();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
 
     @Override
     public boolean onSupportNavigateUp() {

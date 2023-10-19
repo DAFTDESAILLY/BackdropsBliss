@@ -9,8 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +20,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.desailly.backdropsbliss.CategoriasAdmin.MusicaA.AgregarMusica;
@@ -47,6 +51,10 @@ public class VideoJuegosA extends AppCompatActivity {
 
     FirebaseRecyclerAdapter<VideoJuego, ViewHolderVideojuegos> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<VideoJuego> options;
+
+    SharedPreferences sharedPreferences;
+    Dialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +70,8 @@ public class VideoJuegosA extends AppCompatActivity {
         recyclerViewVideoJuegos.setHasFixedSize(true);
         mFirebaseDataBase =  FirebaseDatabase.getInstance();
         mRef = mFirebaseDataBase.getReference("VIDEOJUEGOS");
+
+        dialog = new Dialog(VideoJuegosA.this);
 
         ListarImagenesVideoJuegos();
     }
@@ -125,9 +135,21 @@ public class VideoJuegosA extends AppCompatActivity {
             }
         };
 
-        recyclerViewVideoJuegos.setLayoutManager(new GridLayoutManager(VideoJuegosA.this,2));
-        firebaseRecyclerAdapter.startListening();
-        recyclerViewVideoJuegos.setAdapter(firebaseRecyclerAdapter);
+        sharedPreferences = VideoJuegosA.this.getSharedPreferences("VIDEOJUEGOS",MODE_PRIVATE);
+        String ordenar_en = sharedPreferences.getString("Ordenar","Dos");
+
+        //eligir el tipo de vista
+        if (ordenar_en.equals("Dos")){
+
+            recyclerViewVideoJuegos.setLayoutManager(new GridLayoutManager(VideoJuegosA.this,2));
+            firebaseRecyclerAdapter.startListening();
+            recyclerViewVideoJuegos.setAdapter(firebaseRecyclerAdapter);
+        }
+        else if (ordenar_en.equals("Tres")) {
+            recyclerViewVideoJuegos.setLayoutManager(new GridLayoutManager(VideoJuegosA.this,3));
+            firebaseRecyclerAdapter.startListening();
+            recyclerViewVideoJuegos.setAdapter(firebaseRecyclerAdapter);
+        }
     }
 
     private void EliminarDatos(final String NombreActual,final String ImagenActual){
@@ -203,11 +225,47 @@ public class VideoJuegosA extends AppCompatActivity {
             finish();
         }
         if(item.getItemId() == R.id.Vista){
-            Toast.makeText(this, "Listar imagenes", Toast.LENGTH_SHORT).show();
+           Ordenar_Imagenes();
         }
         return super.onOptionsItemSelected(item);
     }
 
+    private void Ordenar_Imagenes(){
+
+        //declarar vista
+        TextView OrdenarTXT;
+        Button Dos_Columnas,Tres_Columnas;
+        //coneccion cuadro de dialog
+        dialog.setContentView(R.layout.dialog_ordenar);
+
+        //vistas
+        OrdenarTXT = dialog.findViewById(R.id.OrdenarTXT);
+        Dos_Columnas = dialog.findViewById(R.id.Dos_Columnas);
+        Tres_Columnas = dialog.findViewById(R.id.Tres_Columnas);
+
+        //eventio 2 columnas
+        Dos_Columnas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Ordenar", "Dos");
+                editor.apply();
+                recreate();
+                dialog.dismiss();
+            }
+        });
+        Tres_Columnas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Ordenar", "Tres");
+                editor.apply();
+                recreate();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
 
     @Override
     public boolean onSupportNavigateUp() {

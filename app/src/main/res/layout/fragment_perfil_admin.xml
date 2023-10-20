@@ -12,16 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="7dp">
+        android:padding="10dp">
 
         <TextView
             android:text="@string/PERFILADMINISTRADORTXT"
             android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#267365"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/FOTOPERFILIMG"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -29,10 +31,19 @@
             android:layout_marginTop="15dp"
             android:src="@drawable/perfil"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#267365"
+            android:layout_marginTop="10dp"/>
+
+
         <TextView
             android:textSize="20sp"
             android:text="@string/MIINFORMACIONTXT"
             android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="#267365"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -49,7 +60,8 @@
                 android:text="@string/UIDPERFILTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:textColor="#000"/>
 
             <TextView
                 android:id="@+id/UIDPERFIL"
@@ -72,7 +84,8 @@
                 android:text="@string/NOMBRESPERFILTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:textColor="#000"/>
 
             <TextView
                 android:id="@+id/NOMBRESPERFIL"
@@ -80,7 +93,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
         <!--apellido-->
@@ -95,7 +109,8 @@
                 android:text="@string/APELLIDOPERFILTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:textColor="#000"/>
 
             <TextView
                 android:id="@+id/APELLIDOPERFIL"
@@ -116,6 +131,7 @@
             <TextView
                 android:id="@+id/CORREPPERFILTXT"
                 android:text="@string/CORREPPERFILTXT"
+                android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"/>
@@ -139,6 +155,7 @@
             <TextView
                 android:id="@+id/PASWORDPERFILTXT"
                 android:text="@string/PASWORDPERFILTXT"
+                android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"/>
@@ -163,6 +180,7 @@
             <TextView
                 android:id="@+id/EDADPERFILTXT"
                 android:text="@string/EDADPERFILTXT"
+                android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"/>
@@ -176,6 +194,12 @@
                 android:textSize="18sp"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#267365"
+            android:layout_marginTop="10dp"/>
 
         <Button
             android:id="@+id/ACTUALIZARPASS"

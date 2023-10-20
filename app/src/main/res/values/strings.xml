@@ -96,8 +96,8 @@
     <string name="Dos_Columnas">2 Columnas </string>
     <string name="Tres_Columnas">3 Columnas </string>
 
-    <string name="PERFILADMINISTRADORTXT">Mi Perfil </string>
-    <string name="MIINFORMACIONTXT">Mi Informacion </string>
+    <string name="PERFILADMINISTRADORTXT">MI PERFIL </string>
+    <string name="MIINFORMACIONTXT">MI INFORMACION </string>
     <string name="UIDPERFILTXT">Uid: </string>
     <string name="UIDPERFIL">--- </string>
     <string name="NOMBRESPERFILTXT">Nombre:</string>
@@ -122,6 +122,12 @@
     <string name="CAMBIARPASSBTN">Cambiar Contraseña </string>
     <string name="IRINICIOBTN">Ir Inicio </string>
     <string name="NOTATXT">Nota: Si cambia la contraseña , se cerrara sesion automaticamente </string>
+
+    <!-- Administrar item-->
+    <string name="NombresADMIN">Nombres</string>
+    <string name="CorreoADMIN">Correo Electronico</string>
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

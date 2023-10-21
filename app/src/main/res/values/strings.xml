@@ -127,7 +127,19 @@
     <string name="NombresADMIN">Nombres</string>
     <string name="CorreoADMIN">Correo Electronico</string>
 
+    <string name="buscar_administrador">Buscar</string>
 
+    <!-- Detalle admin-->
+    <string name="DetalleTXT">Detalle del Admistrador </string>
+    <string name="UidDetalleAdmin">UID </string>
+    <string name="NombresDetalleAdmin">Nombres </string>
+    <string name="ApellidosDetalleAdmin">Apellidos </string>
+    <string name="CorreoDetalleAdmin">Correo </string>
+    <string name="EdadDetalleAdmin">Edad </string>
+
+
+    <!-- Detalle admin-->
+    <string name="NombreCategoriaD"> -- </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

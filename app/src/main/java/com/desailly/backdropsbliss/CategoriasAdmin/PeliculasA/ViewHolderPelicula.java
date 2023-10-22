@@ -66,9 +66,9 @@ public class ViewHolderPelicula extends RecyclerView.ViewHolder {
 
         try {
 
-            Picasso.get().load(imagen).into(ImagePelicula);
+            Picasso.get().load(imagen).placeholder(R.drawable.categoria).into(ImagePelicula);
         }catch (Exception e){
-            Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            Picasso.get().load(R.drawable.categoria).into(ImagePelicula);
         }
 
     }

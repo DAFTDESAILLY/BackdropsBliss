@@ -20,13 +20,14 @@
             android:id="@+id/ImagenCategoriaD"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="center"/>
+            android:scaleType="centerCrop"/>
         <TextView
             android:id="@+id/NombreCategoriaD"
             android:text="@string/NombreCategoriaD"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#267365"
+            android:textColor="#fff"
             android:textSize="18sp"
             android:gravity="center"/>
 

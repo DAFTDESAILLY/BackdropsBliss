@@ -65,9 +65,9 @@ public class ViewHolderVideojuegos extends RecyclerView.ViewHolder{
 
         try {
 
-            Picasso.get().load(imagen).into(ImagenVideoJuegos);
+            Picasso.get().load(imagen).placeholder(R.drawable.categoria).into(ImagenVideoJuegos);
         }catch (Exception e){
-            Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            Picasso.get().load(R.drawable.categoria).into(ImagenVideoJuegos);
         }
 
     }

@@ -47,7 +47,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-storage:20.2.1")
     implementation ("com.firebaseui:firebase-ui-database:8.0.0")
     implementation ("de.hdodenhof:circleimageview:3.0.1")
-
+    implementation ("com.github.clans:fab:1.6.4")
 
     implementation("com.squareup.picasso:picasso:2.71828")//gestion imagen
     implementation("androidx.recyclerview:recyclerview:1.3.1")//recyclerview

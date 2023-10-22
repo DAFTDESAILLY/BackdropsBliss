@@ -201,7 +201,6 @@ public class PeliculasA extends AppCompatActivity {
             firebaseRecyclerAdapter.startListening();
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -209,7 +208,6 @@ public class PeliculasA extends AppCompatActivity {
         menuInflater.inflate(R.menu.menu_vista,menu);
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.Agregar){
@@ -221,7 +219,6 @@ public class PeliculasA extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
     private void Ordenar_Imagenes(){
 
         //declarar vista
@@ -258,7 +255,6 @@ public class PeliculasA extends AppCompatActivity {
         });
         dialog.show();
     }
-
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();

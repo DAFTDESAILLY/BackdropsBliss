@@ -86,8 +86,22 @@ public class PeliculasCliente extends AppCompatActivity {
                 viewHolderPelicula.setOnClickListener(new ViewHolderPelicula.ClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Toast.makeText(PeliculasCliente.this, "ITEM CLICK", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(PeliculasCliente.this, DetalleCliente.class));
+
+                        //Obtener los datos de la imagen
+                        String Imagen = getItem(position).getImagen();
+                        String Nombre = getItem(position).getNombre();
+                        int Vistas = getItem(position).getVistas();
+                        //convertir a string
+                        String VistaString = String.valueOf(Vistas);
+
+                        //pasamos a la actividad detalle cliente
+                        Intent intent = new Intent(PeliculasCliente.this,DetalleCliente.class);
+                       //Datos a pasar
+                        intent.putExtra("Imagen",Imagen);
+                        intent.putExtra("Nombre",Nombre);
+                        intent.putExtra("Vista",VistaString);
+
+                        startActivity(intent);
                     }
 
                     @Override

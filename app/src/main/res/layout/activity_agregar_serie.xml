@@ -24,6 +24,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
+            <!--id-->
+            <TextView
+                android:id="@+id/IdSeries"
+                android:text="@string/IdSeries"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <EditText
                 android:id="@+id/Nombre_Serie"
                 android:hint="@string/NombrePeliculas"

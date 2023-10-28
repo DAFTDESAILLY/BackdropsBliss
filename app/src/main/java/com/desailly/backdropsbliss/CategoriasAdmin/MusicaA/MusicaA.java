@@ -96,11 +96,12 @@ public class MusicaA extends AppCompatActivity {
                 viewHolderMusica.setOnClickListener(new ViewHolderMusica.ClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Toast.makeText(MusicaA.this, "ITEM CLICK", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(MusicaA.this, "ITEM CLICK", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onItemLongClick(View view, int position) {
+                        final String Id = getItem(position).getId();
                         String Nombre = getItem(position).getNombre();
                         String Imagen = getItem(position).getImagen();
 
@@ -115,13 +116,14 @@ public class MusicaA extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if (i == 0 ){
                                     Intent intent = new Intent(MusicaA.this, AgregarMusica.class);
+                                    intent.putExtra("IdEnviado",Id);
                                     intent.putExtra("NombreEnviado",Nombre);
                                     intent.putExtra("ImagenEnviada",Imagen);
                                     intent.putExtra("VistaEnviada",VistaString);
                                     startActivity(intent);
                                 }
                                 if (i == 1 ){
-                                    EliminarDatos(Nombre,Imagen);
+                                    EliminarDatos(Id,Imagen);
                                 }
                             }
                         });
@@ -149,7 +151,7 @@ public class MusicaA extends AppCompatActivity {
         }
     }
 
-    private void EliminarDatos(final String NombreActual,final String ImagenActual){
+    private void EliminarDatos(final String IdActual,final String ImagenActual){
         AlertDialog.Builder builder = new AlertDialog.Builder(MusicaA.this);
         builder.setTitle("Eliminar");
         builder.setMessage("¿Desea eliminar la imagen?");
@@ -158,7 +160,7 @@ public class MusicaA extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //Eliminar imagen de la db
-                Query query = mRef.orderByChild("nombre").equalTo(NombreActual);
+                Query query = mRef.orderByChild("id").equalTo(IdActual);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

@@ -1,29 +1,18 @@
-package com.desailly.backdropsbliss.CategoriasAdmin.MusicaA;
+package com.desailly.backdropsbliss.CategoriasClienteFirebase;
 
-public class Musica {
+public class ImgCatFirebaseElegida {
+    String imagen;
+    String nombre;
+    int vistas;
 
-    private String id;
-    private String imagen;
-    private String nombre;
-    private int vistas;
 
-    public Musica() {
+    public ImgCatFirebaseElegida() {
     }
 
-
-    public Musica(String id, String imagen, String nombre, int vistas) {
-        this.id = id;
+    public ImgCatFirebaseElegida(String imagen, String nombre, int vistas) {
         this.imagen = imagen;
         this.nombre = nombre;
         this.vistas = vistas;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getImagen() {

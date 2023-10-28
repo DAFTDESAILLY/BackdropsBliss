@@ -5,7 +5,8 @@
     <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.CAMERA" /> <!-- permiso camara -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- permiso almacenanmiento externo -->
+    <!-- permiso almacenanmiento externo -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" /> <!-- permiso fondo de pantalla -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- permiso para internet -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,10 +18,14 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
+        <activity
+            android:name=".CategoriasClienteFirebase.ListaCategoriaFirebase"
+            android:exported="false" />
         <activity
             android:name=".DetelleCliente.DetalleCliente"
             android:exported="false" />
@@ -89,6 +94,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.desailly.backdropsbliss,fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path"></meta-data>
+        </provider>
     </application>
 
 </manifest>

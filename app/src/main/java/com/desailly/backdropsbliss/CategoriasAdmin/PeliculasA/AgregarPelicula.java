@@ -47,13 +47,15 @@ import static com.google.firebase.storage.FirebaseStorage.getInstance;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import kotlinx.coroutines.EventLoopImplBase;
 
 public class AgregarPelicula extends AppCompatActivity {
 
     EditText NombrePeliculas;
-    TextView VistaPeliculas;
+    TextView VistaPeliculas,IdPeliculas;
     ImageView ImagenAgregarPelicula;
     Button PublicarPelicula;
 
@@ -66,7 +68,7 @@ public class AgregarPelicula extends AppCompatActivity {
 
     ProgressDialog progressDialog;
 
-    String rNombre,rImagen,rVista;
+    String  rId,rNombre,rImagen,rVista;
 
   //  int CODIGO_DE_SOLICITUD_IMAGEN = 5;
 
@@ -82,6 +84,7 @@ public class AgregarPelicula extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+        IdPeliculas = findViewById(R.id.IdPeliculas);
         VistaPeliculas = findViewById(R.id.VistaPeliculas);
         NombrePeliculas = findViewById(R.id.NombrePeliculas);
         ImagenAgregarPelicula = findViewById(R.id.ImagenAgregarPelicula);
@@ -94,11 +97,13 @@ public class AgregarPelicula extends AppCompatActivity {
         Bundle intent = getIntent().getExtras();
         if (intent != null){
             //recuperar los datos de la actividad anteriror
+            rId = intent.getString("IdEnviado");
             rNombre = intent.getString("NombreEnviado");
             rImagen = intent.getString("ImagenEnviada");
             rVista = intent.getString("VistaEnviada");
 
             //setear
+            IdPeliculas.setText(rId);
             NombrePeliculas.setText(rNombre);
             VistaPeliculas.setText(rVista);
             Picasso.get().load(rImagen).into(ImagenAgregarPelicula);
@@ -193,7 +198,7 @@ public class AgregarPelicula extends AppCompatActivity {
         DatabaseReference databaseReference = firebaseDatabase.getReference("PELICULAS");
 
         //CONSULTA
-        Query query = databaseReference.orderByChild("nombre").equalTo(rNombre);
+        Query query = databaseReference.orderByChild("id").equalTo(rId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -239,11 +244,16 @@ public class AgregarPelicula extends AppCompatActivity {
 
                             Uri downloadURI = uriTask.getResult();
 
+                            String ID = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss",
+                                    Locale.getDefault()).format(System.currentTimeMillis());
+                            IdPeliculas.setText(ID);
 
+                            String mNombre = NombrePeliculas.getText().toString();
+                            String mId = IdPeliculas.getText().toString();
                             String mVista = VistaPeliculas.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            Pelicula pelicula = new Pelicula(downloadURI.toString(),mNombre,VISTA);
+                            Pelicula pelicula = new Pelicula(mNombre+"/" +mId,downloadURI.toString(),mNombre,VISTA);
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(pelicula);

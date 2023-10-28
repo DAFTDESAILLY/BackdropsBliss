@@ -23,7 +23,17 @@
                 android:text="@string/NombreTXTPeliculas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            
+
+            <!--id-->
+            <TextView
+                android:id="@+id/IdPeliculas"
+                android:text="@string/IdPeliculas"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <EditText
                 android:id="@+id/NombrePeliculas"
                 android:hint="@string/NombrePeliculas"

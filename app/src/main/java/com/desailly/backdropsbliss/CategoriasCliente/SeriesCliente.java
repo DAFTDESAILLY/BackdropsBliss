@@ -88,9 +88,21 @@ public class SeriesCliente extends AppCompatActivity {
                 viewHolderSerie.setOnClickListener(new ViewHolderSerie.ClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Toast.makeText(SeriesCliente.this, "ITEM CLICK", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(SeriesCliente.this, DetalleCliente.class));
+                        //Obtener los datos de la imagen
+                        String Imagen = getItem(position).getImagen();
+                        String Nombre = getItem(position).getNombre();
+                        int Vistas = getItem(position).getVistas();
+                        //convertir a string
+                        String VistaString = String.valueOf(Vistas);
 
+                        //pasamos a la actividad detalle cliente
+                        Intent intent = new Intent(SeriesCliente.this,DetalleCliente.class);
+                        //Datos a pasar
+                        intent.putExtra("Imagen",Imagen);
+                        intent.putExtra("Nombre",Nombre);
+                        intent.putExtra("Vista",VistaString);
+
+                        startActivity(intent);
                     }
 
                     @Override

@@ -2,6 +2,7 @@ package com.desailly.backdropsbliss.CategoriasAdmin.PeliculasA;
 
 public class Pelicula {
 
+    private String id;
     private String imagen;
     private String nombre;
     private int vistas;
@@ -10,11 +11,23 @@ public class Pelicula {
     }
 
     //constructor
-    public Pelicula(String imagen, String nombre, int vistas) {
+
+
+    public Pelicula(String id, String imagen, String nombre, int vistas) {
+        this.id = id;
         this.imagen = imagen;
         this.nombre = nombre;
         this.vistas = vistas;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     /*getter and setter*/
     public String getImagen() {
         return imagen;

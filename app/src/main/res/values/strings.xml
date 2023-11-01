@@ -19,6 +19,7 @@
     <string name="InicioCliente">Inicio</string>
     <string name="MasOpcionestxt">Mas opciones</string>
     <string name="AcercaDe">Acerca De</string>
+    <string name="Administrador">Administrador</string>
 
     <string name="Acceder">Acceder</string>
 
@@ -169,4 +170,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Acerca de aplicacion-->
+    <string name="AcercaDeApp">Acerca De</string>
+    <string name="InfoDesarrollador">Desarrollado por: Desailly by Sheko</string>
+    <string name="InfoVersion">Version: 1.0</string>
+    <string name="InfoCorreo">Correo: BackdropsBliss@gmail.com</string>
+
+
+
 </resources>

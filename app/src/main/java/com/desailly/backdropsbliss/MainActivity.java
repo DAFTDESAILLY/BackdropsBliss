@@ -17,6 +17,7 @@ import com.desailly.backdropsbliss.FragmentosAdministrador.PerfilAdmin;
 import com.desailly.backdropsbliss.FragmentosAdministrador.RegistrarAdmin;
 import com.desailly.backdropsbliss.FragmentosCliente.AcerDeCliente;
 import com.desailly.backdropsbliss.FragmentosCliente.InicioCliente;
+import com.desailly.backdropsbliss.FragmentosCliente.Login_admin;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -61,6 +62,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         if(item.getItemId() == R.id.AcercaDe){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AcerDeCliente()).commit();
+        }
+        if(item.getItemId() == R.id.Administrador){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Login_admin()).commit();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

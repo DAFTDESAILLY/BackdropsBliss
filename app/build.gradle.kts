@@ -52,6 +52,7 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.71828")//gestion imagen
     implementation("androidx.recyclerview:recyclerview:1.3.1")//recyclerview
     implementation("androidx.cardview:cardview:1.0.0")//cardview
+    implementation ("com.novoda:merlin-core:1.2.0")//para detectar la conexion de wifi o datos
 
 
 }

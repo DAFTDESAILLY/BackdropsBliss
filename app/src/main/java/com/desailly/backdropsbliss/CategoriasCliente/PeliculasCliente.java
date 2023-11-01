@@ -30,8 +30,13 @@ import com.desailly.backdropsbliss.DetelleCliente.DetalleCliente;
 import com.desailly.backdropsbliss.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class PeliculasCliente extends AppCompatActivity {
     RecyclerView recyclerViewPeliculaC;
@@ -43,6 +48,7 @@ public class PeliculasCliente extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     Dialog dialog;
+    ValueEventListener valueEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,11 +94,34 @@ public class PeliculasCliente extends AppCompatActivity {
                     public void onItemClick(View view, int position) {
 
                         //Obtener los datos de la imagen
+                        String Id = getItem(position).getId();
                         String Imagen = getItem(position).getImagen();
                         String Nombre = getItem(position).getNombre();
                         int Vistas = getItem(position).getVistas();
                         //convertir a string
                         String VistaString = String.valueOf(Vistas);
+                        valueEventListener = mRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot ds :  snapshot.getChildren()){
+                                    //crear un objeto  clase peliuclas
+                                    Pelicula pelicula = ds.getValue(Pelicula.class);
+
+                                    if (pelicula.getId().equals(Id)){
+                                        int i = 1;
+                                        HashMap<String,Object>hashMap = new HashMap<>();
+                                        //el valor que vamos a actualizar
+                                        hashMap.put("vistas",Vistas+i);
+                                        ds.getRef().updateChildren(hashMap);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
 
                         //pasamos a la actividad detalle cliente
                         Intent intent = new Intent(PeliculasCliente.this,DetalleCliente.class);
@@ -137,6 +166,17 @@ public class PeliculasCliente extends AppCompatActivity {
             firebaseRecyclerAdapter.startListening();
         }
     }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mRef != null && valueEventListener != null){
+            mRef.removeEventListener(valueEventListener);
+
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();

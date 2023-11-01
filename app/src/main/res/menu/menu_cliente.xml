@@ -25,8 +25,12 @@
                 android:title="@string/AcercaDe"
                 android:icon="@drawable/acerca_ico">
             </item>
+            <item
+                android:id="@+id/Administrador"
+                android:title="@string/Administrador"
+                android:icon="@drawable/administrador_ico">
+            </item>
         </menu>
-
     </item>
 
 </menu>

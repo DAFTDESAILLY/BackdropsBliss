@@ -22,13 +22,19 @@ import android.widget.TextView;
 
 import com.desailly.backdropsbliss.CategoriasAdmin.MusicaA.Musica;
 import com.desailly.backdropsbliss.CategoriasAdmin.MusicaA.ViewHolderMusica;
+import com.desailly.backdropsbliss.CategoriasAdmin.PeliculasA.Pelicula;
 import com.desailly.backdropsbliss.CategoriasCliente.MusicaCliente;
 import com.desailly.backdropsbliss.DetelleCliente.DetalleCliente;
 import com.desailly.backdropsbliss.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class ListaCategoriaFirebase extends AppCompatActivity {
 
@@ -42,7 +48,7 @@ public class ListaCategoriaFirebase extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     Dialog dialog;
-
+    ValueEventListener valueEventListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,11 +98,35 @@ public class ListaCategoriaFirebase extends AppCompatActivity {
                     @Override
                     public void onItemClick(View view, int position) {
                         //Obtener los datos de la imagen
+                        String Id = getItem(position).getId();
                         String Imagen = getItem(position).getImagen();
                         String Nombre = getItem(position).getNombre();
                         int Vistas = getItem(position).getVistas();
                         //convertir a string
                         String VistaString = String.valueOf(Vistas);
+
+                        valueEventListener = databaseReference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot ds :  snapshot.getChildren()){
+                                    //crear un objeto  clase peliuclas
+                                    ImgCatFirebaseElegida imgCatFirebaseElegida = ds.getValue(ImgCatFirebaseElegida.class);
+
+                                    if (imgCatFirebaseElegida.getId().equals(Id)){
+                                        int i = 1;
+                                        HashMap<String,Object> hashMap = new HashMap<>();
+                                        //el valor que vamos a actualizar
+                                        hashMap.put("vistas",Vistas+i);
+                                        ds.getRef().updateChildren(hashMap);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
 
                         //pasamos a la actividad detalle cliente
                         Intent intent = new Intent(ListaCategoriaFirebase.this, DetalleCliente.class);
@@ -146,6 +176,14 @@ public class ListaCategoriaFirebase extends AppCompatActivity {
             firebaseRecyclerAdapter.startListening();
         }
         super.onStart();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (databaseReference != null && valueEventListener != null){
+            databaseReference.removeEventListener(valueEventListener);
+
+        }
     }
 
     @Override

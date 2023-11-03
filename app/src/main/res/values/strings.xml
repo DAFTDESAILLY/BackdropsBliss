@@ -177,6 +177,17 @@
     <string name="InfoVersion">Version: 1.0</string>
     <string name="InfoCorreo">Correo: BackdropsBliss@gmail.com</string>
 
+    <!-- Animaciones-->
+    <string name="ACTIVEPERMISOS">ACTIVE LOS PERMISOS DE ALMACENAMIENTO</string>
+    <string name="OKPERMISOS">Ok</string>
+    <!-- DESCARGA-->
+    <string name="DESCARGAEXITOSATXT">DESCARGA EXITOSA</string>
+    <string name="OKDESCARGA">OK</string>
+    <!-- Establecer fondo de pantalla-->
+    <string name="ESTABLECIDOTXT">Se establecio como fondo de pantalla</string>
+    <string name="OKESTABLECIDO">OK</string>
 
+    <!-- Apartado informativo-->4
+    <string name="SoloadminTXT">Solo para administradores</string>
 
 </resources>

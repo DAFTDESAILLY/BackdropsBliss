@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -88,6 +89,12 @@ public class InicioCliente extends Fragment {
         return view;
     }
 
+   /* private void InicializarMerlin(){
+        merlin = new Merlin.Builder().withConnectableCallbacks()
+                .withDisconnectableCallbacks()
+                .withBindableCallBacks()
+                .build(getActivity());
+    } */
 
     private void VerCategoriasD (){
         optionsD =  new FirebaseRecyclerOptions.Builder<CategoriaD>().setQuery(referenceD,CategoriaD.class).build();
@@ -155,7 +162,7 @@ public class InicioCliente extends Fragment {
                         //pasar el nombre se la categoria de sgte actividad
                         Intent intent = new Intent(view.getContext(), ListaCategoriaFirebase.class);
                         intent.putExtra("NOMBRE_CATEGORIA",NOMBRE_CATEGORIA);
-                        Toast.makeText(view.getContext(), "CATEGORIA SELECCIONADA = "+ NOMBRE_CATEGORIA, Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(view.getContext(), "CATEGORIA SELECCIONADA = "+ NOMBRE_CATEGORIA, Toast.LENGTH_SHORT).show();
                         startActivity(intent);
 
                     }

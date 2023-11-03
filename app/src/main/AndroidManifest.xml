@@ -16,10 +16,10 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_wallpaper_montana"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_wallpaper_montana_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
@@ -27,7 +27,7 @@
             android:name=".CategoriasClienteFirebase.ListaCategoriaFirebase"
             android:exported="false" />
         <activity
-            android:name=".DetelleCliente.DetalleCliente"
+            android:name=".DetelleCliente.DetalleImagen"
             android:exported="false" />
         <activity
             android:name=".Categorias.ControladorCD"
@@ -97,7 +97,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.desailly.backdropsbliss,fileprovider"
+            android:authorities="com.desailly.backdropsbliss.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

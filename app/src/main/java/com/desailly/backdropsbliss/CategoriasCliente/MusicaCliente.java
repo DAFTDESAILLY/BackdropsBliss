@@ -1,11 +1,5 @@
 package com.desailly.backdropsbliss.CategoriasCliente;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,9 +13,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.desailly.backdropsbliss.CategoriasAdmin.MusicaA.Musica;
 import com.desailly.backdropsbliss.CategoriasAdmin.MusicaA.ViewHolderMusica;
-import com.desailly.backdropsbliss.DetelleCliente.DetalleCliente;
+import com.desailly.backdropsbliss.DetelleCliente.DetalleImagen;
 import com.desailly.backdropsbliss.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -119,7 +119,7 @@ public class MusicaCliente extends AppCompatActivity {
                         });
 
                         //pasamos a la actividad detalle cliente
-                        Intent intent = new Intent(MusicaCliente.this, DetalleCliente.class);
+                        Intent intent = new Intent(MusicaCliente.this, DetalleImagen.class);
                         //Datos a pasar
                         intent.putExtra("Imagen", Imagen);
                         intent.putExtra("Nombre", Nombre);

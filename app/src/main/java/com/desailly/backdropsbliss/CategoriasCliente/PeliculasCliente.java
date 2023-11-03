@@ -1,14 +1,6 @@
 package com.desailly.backdropsbliss.CategoriasCliente;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,13 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.desailly.backdropsbliss.CategoriasAdmin.PeliculasA.AgregarPelicula;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.desailly.backdropsbliss.CategoriasAdmin.PeliculasA.Pelicula;
-import com.desailly.backdropsbliss.CategoriasAdmin.PeliculasA.PeliculasA;
 import com.desailly.backdropsbliss.CategoriasAdmin.PeliculasA.ViewHolderPelicula;
-import com.desailly.backdropsbliss.DetelleCliente.DetalleCliente;
+import com.desailly.backdropsbliss.DetelleCliente.DetalleImagen;
 import com.desailly.backdropsbliss.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -124,7 +119,7 @@ public class PeliculasCliente extends AppCompatActivity {
                         });
 
                         //pasamos a la actividad detalle cliente
-                        Intent intent = new Intent(PeliculasCliente.this,DetalleCliente.class);
+                        Intent intent = new Intent(PeliculasCliente.this, DetalleImagen.class);
                        //Datos a pasar
                         intent.putExtra("Imagen",Imagen);
                         intent.putExtra("Nombre",Nombre);
